@@ -30,7 +30,7 @@ export default function Navbar() {
       </Link>
 
       <nav className="flex items-center gap-4 sm:gap-7">
-        <Link href="#" className="hidden sm:block text-[13px] font-medium text-zinc-400 hover:text-white transition-colors tracking-normal">
+        <Link href="/docs" className="hidden sm:block text-[13px] font-medium text-zinc-400 hover:text-white transition-colors tracking-normal">
           Documentation
         </Link>
         <Link href="/about" className="hidden sm:block text-[13px] font-medium text-zinc-400 hover:text-white transition-colors tracking-normal">
