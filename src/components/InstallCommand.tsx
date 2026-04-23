@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Copy, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-const CMD = 'curl -sL sofon.sh | bash';
+const CMD = 'curl -fsSL https://raw.githubusercontent.com/Alkush-Pipania/sofon/v0.1.8/installer/install.sh | sudo bash';
 
 export default function InstallCommand() {
   const [copied, setCopied] = useState(false);
