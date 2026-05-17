@@ -154,10 +154,13 @@ export default function Docs() {
                 <Step n={2} title="Answer the prompts">
                   <p>Choose install directory, database credentials, and whether to use a domain with automatic HTTPS via Caddy.</p>
                 </Step>
-                <Step n={3} title="Open your app URL">
+                <Step n={3} title="Open firewall ports (AWS / cloud VPS)">
+                  <p>If you&apos;re on AWS EC2, open ports <span className="text-zinc-300">80</span> and <span className="text-zinc-300">443</span> in your instance&apos;s Security Group inbound rules. On DigitalOcean or Hetzner, check the Firewall panel. Without this step the URL will time out even though Sofon is running correctly.</p>
+                </Step>
+                <Step n={4} title="Open your app URL">
                   <p>Once &quot;Sofon is running!&quot; appears, navigate to the URL shown. Register your admin account — this is the first and only account setup.</p>
                 </Step>
-                <Step n={4} title="Configure plugins (optional)">
+                <Step n={5} title="Configure plugins (optional)">
                   <p>Go to <span className="text-zinc-300">Settings → Plugins</span> to add Resend Email or Zenduty for alert notifications.</p>
                 </Step>
               </div>
@@ -186,6 +189,25 @@ export default function Docs() {
                     <span className="text-[11px] text-zinc-600 uppercase tracking-widest w-14 shrink-0 pt-0.5"
                       style={{ fontFamily: 'var(--font-space-grotesk), sans-serif' }}>{label}</span>
                     <span className="text-[13px] text-zinc-300">{value}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-4 space-y-3">
+                <p className="text-[11px] tracking-[0.18em] uppercase text-zinc-600 mt-6 mb-3"
+                  style={{ fontFamily: 'var(--font-space-grotesk), sans-serif' }}>
+                  Cloud firewall checklist
+                </p>
+                {[
+                  { cloud: 'AWS EC2',       how: 'EC2 → Instances → Security Group → Edit Inbound Rules → add HTTP (80) and HTTPS (443) from 0.0.0.0/0' },
+                  { cloud: 'DigitalOcean',  how: 'Networking → Firewalls → your firewall → Inbound Rules → add HTTP and HTTPS' },
+                  { cloud: 'Hetzner',       how: 'Firewall → add inbound rule for TCP 80 and TCP 443' },
+                  { cloud: 'Other VPS',     how: 'Run: ufw allow 80/tcp && ufw allow 443/tcp' },
+                ].map(({ cloud, how }) => (
+                  <div key={cloud} className="flex gap-4 rounded-xl border border-white/[0.07] bg-white/[0.02] px-4 py-3.5">
+                    <span className="text-[12px] text-white shrink-0 w-28"
+                      style={{ fontFamily: 'var(--font-space-grotesk), sans-serif' }}>{cloud}</span>
+                    <span className="text-[12px] text-zinc-400">{how}</span>
                   </div>
                 ))}
               </div>
