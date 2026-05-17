@@ -75,7 +75,7 @@ export default function About() {
           </h2>
           <div className="flex flex-col gap-[18px]">
             <p className="text-[clamp(15px,1.4vw,17px)] leading-[1.75] text-zinc-400">
-              Sofon is a <strong className="text-white/75 font-medium">self-hosted uptime monitoring system</strong> you can deploy on your own infrastructure with a single command. It checks your endpoints — HTTP, TCP, DNS — and tells you the moment something goes wrong.
+              Sofon is a <strong className="text-white/75 font-medium">self-hosted uptime monitoring system</strong> you can deploy on your own infrastructure with a single command. It checks your HTTP endpoints on a configurable interval and tells you the moment something goes wrong.
             </p>
             <p className="text-[clamp(15px,1.4vw,17px)] leading-[1.75] text-zinc-400">
               No third-party servers. No data leaving your network. No monthly bill that scales with your usage. Just a robust, open-source tool that runs where you run.
@@ -100,7 +100,7 @@ export default function About() {
             <p className="text-[clamp(15px,1.4vw,17px)] leading-[1.75] text-zinc-400">
               We built Sofon so that a single{" "}
               <code className="font-mono text-[0.88em] text-white/60 bg-white/[0.06] border border-white/10 rounded-sm px-[5px] py-[1px]">
-                curl -sL sofon.sh | bash
+                curl -fsSL raw.githubusercontent.com/…/install.sh | sudo bash
               </code>{" "}
               is all it takes to have production-grade monitoring on your own terms.
             </p>
@@ -116,13 +116,13 @@ export default function About() {
           </h2>
           <div className="flex flex-col gap-[18px]">
             <p className="text-[clamp(15px,1.4vw,17px)] leading-[1.75] text-zinc-400">
-              Sofon runs as a lightweight daemon on your server. It periodically checks the endpoints you configure — your APIs, databases, DNS records — and records response times, status codes, and availability.
+              Sofon runs as a set of Docker containers on your server. A background worker periodically polls the HTTP endpoints you configure, recording response times, status codes, and availability over time.
             </p>
             <p className="text-[clamp(15px,1.4vw,17px)] leading-[1.75] text-zinc-400">
-              When something fails, it routes alerts through the channels you&apos;ve set up: email, Slack, webhooks, whatever fits your workflow. A <strong className="text-white/75 font-medium">built-in status dashboard</strong> gives you and your team a live view of everything at a glance.
+              When a monitor fails three consecutive checks, an incident is created and alerts are dispatched through your configured plugins — <strong className="text-white/75 font-medium">Resend Email</strong> for direct email notifications, or <strong className="text-white/75 font-medium">Zenduty</strong> for full incident management. Recovery is automatic: when the monitor comes back up, the incident resolves and a recovery alert is sent.
             </p>
             <p className="text-[clamp(15px,1.4vw,17px)] leading-[1.75] text-zinc-400">
-              Everything is configurable through a simple YAML file. No GUI required, no account to create, no permissions to grant.
+              Everything is configured through a <strong className="text-white/75 font-medium">clean web UI</strong> — create monitors, manage plugins, and review incident history without touching a config file.
             </p>
           </div>
         </motion.div>
